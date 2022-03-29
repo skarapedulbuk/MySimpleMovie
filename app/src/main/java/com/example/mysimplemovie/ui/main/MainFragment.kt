@@ -46,6 +46,10 @@ class MainFragment : Fragment() {
                 progressBar.visibility = View.GONE
                 itemGroup.visibility = View.VISIBLE
                 setData(movieData)
+                Snackbar
+                    .make(main, getString(R.string.success), Snackbar.LENGTH_INDEFINITE)
+                    .setAction(R.string.reload) { viewModel.getMovieDetails() }
+                    .show()
             }
             is AppState.Loading -> {
                 itemGroup.visibility = View.INVISIBLE
@@ -55,7 +59,7 @@ class MainFragment : Fragment() {
                 progressBar.visibility = View.GONE
                 itemGroup.visibility = View.INVISIBLE
                 Snackbar
-                    .make(main, R.string.error, Snackbar.LENGTH_INDEFINITE)
+                    .make(main, appState.error.message.toString(), Snackbar.LENGTH_INDEFINITE)
                     .setAction(R.string.reload) { viewModel.getMovieDetails() }
                     .show()
             }

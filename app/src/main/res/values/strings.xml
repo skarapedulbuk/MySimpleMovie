@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">My Simple Movie</string>
+    <string name="error">Loading Error!</string>
+    <string name="reload">Reload</string>
 </resources>

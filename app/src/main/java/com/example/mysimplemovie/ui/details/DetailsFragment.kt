@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.mysimplemovie.R
 import com.example.mysimplemovie.databinding.DetailsFragmentBinding
 import com.example.mysimplemovie.model.entites.MovieDetails
+import com.squareup.picasso.Picasso
 
 
 class DetailsFragment : Fragment() {
@@ -28,7 +28,8 @@ class DetailsFragment : Fragment() {
             with(binding) {
                 val movie = it.movie
                 titleTw.text = movie.title
-                posterImg.setImageResource(R.drawable.w200)
+                Picasso.get().load("https://image.tmdb.org/t/p/w500${it.posterPath}")
+                    .into(posterImg);
                 descriptionTw.text = it.overview
             }
         }

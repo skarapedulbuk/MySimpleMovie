@@ -9,6 +9,7 @@ import com.example.mysimplemovie.R
 import com.example.mysimplemovie.databinding.RecyclerItemBinding
 import com.example.mysimplemovie.model.entites.MovieDetails
 import com.example.mysimplemovie.ui.main.MainFragment
+import com.squareup.picasso.Picasso
 
 class MainFragmentAdapter(private val itemClickListener: MainFragment.OnItemViewClickListener) :
     RecyclerView.Adapter<MainFragmentAdapter.MainViewHolder>() {
@@ -40,7 +41,9 @@ class MainFragmentAdapter(private val itemClickListener: MainFragment.OnItemView
     inner class MainViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(details: MovieDetails) = with(binding) {
             itemTitleTw.text = details.movie.title
-            itemPosterImg.setImageResource(R.drawable.w200)
+      //      itemPosterImg.setImageResource(R.drawable.w200)
+            Picasso.get().load("https://image.tmdb.org/t/p/w500${details.posterPath}")
+                .into(itemPosterImg);
             itemRatingTw.text = "Рейтинг " + details.voteAverage
             root.setOnClickListener { itemClickListener.onItemViewClick(details) }
 

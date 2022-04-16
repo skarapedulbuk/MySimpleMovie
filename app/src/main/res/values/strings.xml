@@ -3,4 +3,5 @@
     <string name="error">Loading Error!</string>
     <string name="reload">Reload</string>
     <string name="success">Successful Loading!</string>
+    <string name="rating_space">\"Рейтинг \"</string>
 </resources>

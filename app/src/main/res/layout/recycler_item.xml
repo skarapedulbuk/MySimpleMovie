@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/cardview_dark_background"
+    app:cardCornerRadius="@dimen/corner"
+    android:layout_margin="@dimen/default_padding">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/item_poster_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/w200" />
+
+        <TextView
+            android:id="@+id/item_title_tw"
+            android:maxWidth="@dimen/card_width"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/default_padding"
+            android:textSize="@dimen/default_textsize"
+            tools:text="Человек-паук: Нет пути домой" />
+        <TextView
+            android:id="@+id/item_rating_tw"
+            android:maxWidth="@dimen/card_width"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/default_padding"
+            android:textSize="@dimen/rating_textsize"
+            android:textStyle="italic"
+            tools:text="Рейтинг 8.2" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

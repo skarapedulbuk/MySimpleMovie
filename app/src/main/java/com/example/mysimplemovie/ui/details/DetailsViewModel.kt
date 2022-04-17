@@ -1,22 +1,21 @@
-package com.example.mysimplemovie.ui.main
+package com.example.mysimplemovie.ui.details
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.mysimplemovie.model.AppState
 import com.example.mysimplemovie.model.repository.Repository
-import java.lang.Thread.sleep
 
-class MainViewModel(private val repository: Repository) : ViewModel() {
+class DetailsViewModel(private val repository: Repository) : ViewModel() {
     private val localLiveData = MutableLiveData<AppState>()
     val liveData: LiveData<AppState> get() = localLiveData
 
-    fun getMoviesList() = getMoviesListFromLocalStorage()
+    fun getMovieDetails() = getMovieDetailsFromLocalStorage()
 
-    private fun getMoviesListFromLocalStorage() {
+    private fun getMovieDetailsFromLocalStorage() {
         localLiveData.value = AppState.Loading
         Thread {
-            sleep(1000)
+            Thread.sleep(1000)
             if ((0..1).random() == 1) {
                 localLiveData.postValue(AppState.Error(Throwable("Expected Error...")))
             } else {
@@ -25,3 +24,4 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
         }.start()
     }
 }
+

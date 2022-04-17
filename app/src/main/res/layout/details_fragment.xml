@@ -1,62 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/main"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".ui.main.MainFragment">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/poster_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/w200" />
+        <LinearLayout
+            android:id="@+id/main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context=".ui.main.MainFragment">
 
-        <TextView
-            android:id="@+id/title_tw"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="@dimen/default_padding"
-            android:textSize="@dimen/title_textsize"
-            android:textStyle="bold"
-            tools:text="Человек-паук: Нет пути домой" />
+            <ImageView
+                android:id="@+id/poster_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/w200" />
 
-        <TextView
-            android:id="@+id/description_tw"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="@dimen/default_padding"
-            android:textSize="@dimen/default_textsize"
-            tools:text="Мистерио удаётся выяснить истинную личность Человека-паука. С этого момента жизнь Питера Паркера становится невыносимой. Если ранее он мог успешно переключаться между своими амплуа, то сейчас это сделать невозможно. Переворачивается с ног на голову не только жизнь Человека-пауку, но и репутация. Понимая, что так жить невозможно, главный герой фильма «Человек-паук: Нет пути домой» принимает решение обратиться за помощью к своему давнему знакомому Стивену Стрэнджу. Питер Паркер надеется, что с помощью магии он сможет восстановить его анонимность. Стрэндж соглашается помочь." />
+            <TextView
+                android:id="@+id/title_tw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="@dimen/default_padding"
+                android:textSize="@dimen/title_textsize"
+                android:textStyle="bold"
+                tools:text="Человек-паук: Нет пути домой" />
 
-        <!-- <ProgressBar
-             android:id="@+id/progress_bar"
-             style="?android:attr/progressBarStyleLarge"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_gravity="center"
-             android:visibility="gone"
-             app:layout_constraintBottom_toBottomOf="parent"
-             app:layout_constraintEnd_toEndOf="parent"
-             app:layout_constraintStart_toStartOf="parent"
-             app:layout_constraintTop_toTopOf="parent"
-             tools:visibility="visible" />
+            <TextView
+                android:id="@+id/description_tw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="@dimen/default_padding"
+                android:textSize="@dimen/default_textsize"
+                tools:text="Мистерио удаётся выяснить истинную личность Человека-паука. С этого момента жизнь Питера Паркера становится невыносимой. Если ранее он мог успешно переключаться между своими амплуа, то сейчас это сделать невозможно. Переворачивается с ног на голову не только жизнь Человека-пауку, но и репутация. Понимая, что так жить невозможно, главный герой фильма «Человек-паук: Нет пути домой» принимает решение обратиться за помощью к своему давнему знакомому Стивену Стрэнджу. Питер Паркер надеется, что с помощью магии он сможет восстановить его анонимность. Стрэндж соглашается помочь." />
 
-         <androidx.constraintlayout.widget.Group
-             android:id="@+id/itemGroup"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:visibility="invisible"
-             app:constraint_referenced_ids="poster_img, title_tw"
-             tools:visibility="visible" />-->
-    </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+            <!--
+
+             <androidx.constraintlayout.widget.Group
+                 android:id="@+id/itemGroup"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:visibility="invisible"
+                 app:constraint_referenced_ids="poster_img, title_tw"
+                 tools:visibility="visible" />-->
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        tools:visibility="visible" />
+</FrameLayout>

@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_margin="@dimen/default_padding"
     app:cardBackgroundColor="@color/cardview_dark_background"
-    app:cardCornerRadius="@dimen/corner"
-    android:layout_margin="@dimen/default_padding">
+    app:cardCornerRadius="@dimen/corner">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -22,22 +22,42 @@
 
         <TextView
             android:id="@+id/item_title_tw"
-            android:maxWidth="@dimen/card_width"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:lines="2"
+            android:maxWidth="@dimen/card_width"
             android:padding="@dimen/default_padding"
             android:textSize="@dimen/default_textsize"
             tools:text="Человек-паук: Нет пути домой" />
-        <TextView
-            android:id="@+id/item_rating_tw"
-            android:maxWidth="@dimen/card_width"
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:padding="@dimen/default_padding"
-            android:textSize="@dimen/rating_textsize"
-            android:textStyle="italic"
-            tools:text="Рейтинг 8.2" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/item_rating_header_tw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:maxWidth="@dimen/card_width"
+                android:padding="@dimen/default_padding"
+                android:textSize="@dimen/rating_textsize"
+                android:textStyle="italic"
+                tools:text="Рейтинг " />
+            <TextView
+                android:id="@+id/item_rating_tw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:maxWidth="@dimen/card_width"
+                android:padding="@dimen/default_padding"
+                android:textSize="@dimen/rating_textsize"
+                android:textStyle="italic"
+                tools:text="8.2" />
+        </LinearLayout>
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>

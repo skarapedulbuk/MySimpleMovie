@@ -32,6 +32,60 @@
                 android:textStyle="bold"
                 tools:text="Человек-паук: Нет пути домой" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_baseline_star_24" />
+
+                <TextView
+                    android:id="@+id/rate_tw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:padding="@dimen/default_padding"
+                    android:textSize="@dimen/default_textsize"
+                    tools:text="0.0" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_baseline_date_range_24" />
+
+                <TextView
+                    android:id="@+id/date_tw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:padding="@dimen/default_padding"
+                    android:textSize="@dimen/default_textsize"
+                    tools:text="00-00-0000" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_baseline_local_movies_24" />
+
+                <TextView
+                    android:id="@+id/id_tw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:padding="@dimen/default_padding"
+                    android:textSize="@dimen/default_textsize"
+                    tools:text="000000" />
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/description_tw"
                 android:layout_width="wrap_content"
@@ -41,15 +95,6 @@
                 android:textSize="@dimen/default_textsize"
                 tools:text="Мистерио удаётся выяснить истинную личность Человека-паука. С этого момента жизнь Питера Паркера становится невыносимой. Если ранее он мог успешно переключаться между своими амплуа, то сейчас это сделать невозможно. Переворачивается с ног на голову не только жизнь Человека-пауку, но и репутация. Понимая, что так жить невозможно, главный герой фильма «Человек-паук: Нет пути домой» принимает решение обратиться за помощью к своему давнему знакомому Стивену Стрэнджу. Питер Паркер надеется, что с помощью магии он сможет восстановить его анонимность. Стрэндж соглашается помочь." />
 
-            <!--
-
-             <androidx.constraintlayout.widget.Group
-                 android:id="@+id/itemGroup"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:visibility="invisible"
-                 app:constraint_referenced_ids="poster_img, title_tw"
-                 tools:visibility="visible" />-->
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

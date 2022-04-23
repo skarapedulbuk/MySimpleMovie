@@ -17,11 +17,12 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
         localLiveData.value = AppState.Loading
         Thread {
             sleep(1000)
-            if ((0..1).random() == 1) {
+            /*if ((0..1).random() == 1) {
                 localLiveData.postValue(AppState.Error(Throwable("Expected Error...")))
             } else {
                 localLiveData.postValue(AppState.Success(repository.getMoviesListFromLocalStorage()))
-            }
+            }*/
+            localLiveData.postValue(AppState.Success(repository.getMoviesListFromLocalStorage()))
         }.start()
     }
 }

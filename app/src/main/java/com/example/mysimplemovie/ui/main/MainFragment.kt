@@ -1,6 +1,7 @@
 package com.example.mysimplemovie.ui.main
 
 import android.os.Bundle
+import android.os.Parcelable
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -39,7 +40,7 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
-
+            mainFragmentRecyclerView.adapter = adapter
             val observer = Observer<AppState> { renderData(it) }
             viewModel.liveData.observe(viewLifecycleOwner, observer)
             viewModel.getMoviesList()
@@ -50,29 +51,22 @@ class MainFragment : Fragment() {
         when (appState) {
             is AppState.Success -> {
                 progressBar.hide()
-                listNameTw.text = "The idea behind this list is to collect the live action comic book movies from within the Marvel franchise."
-                adapter = MainFragmentAdapter(object : OnItemViewClickListener {
-                    override fun onItemViewClick(details: MovieDetails) {
-                        val manager = activity?.supportFragmentManager
-                        manager?.let { manager ->
-                            val bundle = Bundle().apply {
-                                putParcelable(DetailsFragment.BUNDLE_EXTRA, details)
-                            }
-                            manager.beginTransaction()
-                                .replace(R.id.container, DetailsFragment.newInstance(bundle))
-                                .addToBackStack("")
-                                .commitAllowingStateLoss()
-                        }
-                    }
-                }).apply {
-                    setListOfMovies(appState.movieData)
-                }
+                listNameTw.text = getString(R.string.default_list_name)
                 mainFragmentRecyclerView.show()
-                mainFragmentRecyclerView.adapter = adapter
+                mainFragmentRecyclerView.adapter =
+                    MainFragmentAdapter(object : OnItemViewClickListener {
+                        override fun onItemViewClick(details: MovieDetails) {
+                            detailsFragmentShow(details)
+                        }
+                    }).apply {
+                        setListOfMovies(appState.movieData)
+                    }
+
                 mainContainer.showSnackBar(
                     getString(R.string.success),
                     getString(R.string.reload),
                     { viewModel.getMoviesList() })
+                //               mainFragmentRecyclerView.adapter = adapter
             }
 
             is AppState.Loading -> {
@@ -87,6 +81,18 @@ class MainFragment : Fragment() {
                     getString(R.string.reload),
                     { viewModel.getMoviesList() })
             }
+        }
+    }
+
+    private fun detailsFragmentShow(details: Parcelable) {
+        activity?.supportFragmentManager?.let { manager ->
+            val bundle = Bundle().apply {
+                putParcelable(DetailsFragment.BUNDLE_EXTRA, details)
+            }
+            manager.beginTransaction()
+                .replace(R.id.container, DetailsFragment.newInstance(bundle))
+                .addToBackStack("")
+                .commitAllowingStateLoss()
         }
     }
 

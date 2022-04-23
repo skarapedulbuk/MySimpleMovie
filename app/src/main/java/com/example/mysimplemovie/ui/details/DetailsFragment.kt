@@ -26,40 +26,40 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        arguments?.getParcelable<MovieDetails>(BUNDLE_EXTRA)?.let { movieDetailBundle ->
+            viewModel.liveData.observe(viewLifecycleOwner) { appState ->
+                renderData(appState, movieDetailBundle)
+            }
+            viewModel.getMovieDetails()
+        }
+    }
 
+    private fun renderData(appState: AppState, arguments: MovieDetails) = with(binding) {
+        when (appState) {
+            is AppState.Error -> {
+                main.hide()
+                progressBar.hide()
+                main.showSnackBar(
+                    appState.error.message.toString(),
+                    getString(R.string.reload),
+                    { viewModel.getMovieDetails() })
+            }
+            is AppState.Loading -> {
+                main.hide()
+                progressBar.show()
+            }
+            is AppState.Success -> {
+                progressBar.hide()
+                main.show()
 
-        arguments?.getParcelable<MovieDetails>(BUNDLE_EXTRA)?.let {
-            with(binding) {
-                viewModel.liveData.observe(viewLifecycleOwner) { appState ->
-                    when (appState) {
-                        is AppState.Error -> {
-                            main.hide()
-                            progressBar.hide()
-                            main.showSnackBar(
-                                appState.error.message.toString(),
-                                getString(R.string.reload),
-                                { viewModel.getMovieDetails() })
-                        }
-                        is AppState.Loading -> {
-                            main.hide()
-                            progressBar.show()
-                        }
-                        is AppState.Success -> {
-                            progressBar.hide()
-                            main.show()
+                titleTw.text = arguments.movie.title
+                posterImg.showPoster(arguments.posterPath, 500)
+                descriptionTw.text = arguments.overview
 
-                            titleTw.text = it.movie.title
-                            posterImg.showPoster(it.posterPath, 500)
-                            descriptionTw.text = it.overview
-
-                            main.showSnackBar(
-                                getString(R.string.success),
-                                getString(R.string.reload),
-                                { viewModel.getMovieDetails() })
-                        }
-                    }
-                }
-                viewModel.getMovieDetails()
+                main.showSnackBar(
+                    getString(R.string.success),
+                    getString(R.string.reload),
+                    { viewModel.getMovieDetails() })
             }
         }
     }

@@ -8,17 +8,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mysimplemovie.R
 import com.example.mysimplemovie.databinding.RecyclerItemBinding
 import com.example.mysimplemovie.model.entites.MovieDetails
+import com.example.mysimplemovie.showPoster
 import com.example.mysimplemovie.ui.main.MainFragment
 
 class MainFragmentAdapter(private val itemClickListener: MainFragment.OnItemViewClickListener) :
     RecyclerView.Adapter<MainFragmentAdapter.MainViewHolder>() {
 
-    private var detailsData: List<MovieDetails> = listOf()
+    private var listOfMovies: List<MovieDetails> = listOf()
     private lateinit var binding: RecyclerItemBinding
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setDetails(data: List<MovieDetails>) {
-        detailsData = data
+    fun setListOfMovies(data: List<MovieDetails>) {
+        listOfMovies = data
         notifyDataSetChanged()
     }
 
@@ -31,17 +32,17 @@ class MainFragmentAdapter(private val itemClickListener: MainFragment.OnItemView
     }
 
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
-        holder.bind(detailsData[position])
+        holder.bind(listOfMovies[position])
     }
 
-    override fun getItemCount() = detailsData.size
-
+    override fun getItemCount() = listOfMovies.size
 
     inner class MainViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(details: MovieDetails) = with(binding) {
             itemTitleTw.text = details.movie.title
-            itemPosterImg.setImageResource(R.drawable.w200)
-            itemRatingTw.text = "Рейтинг " + details.voteAverage
+            itemPosterImg.showPoster(details.posterPath, 500)
+            itemRatingHeaderTw.setText(R.string.rating_space)
+            itemRatingTw.text = details.voteAverage.toString()
             root.setOnClickListener { itemClickListener.onItemViewClick(details) }
 
         }

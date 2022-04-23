@@ -6,4 +6,5 @@
     <dimen name="card_width">200dp</dimen>
     <dimen name="rating_textsize">12sp</dimen>
     <dimen name="title_textsize">25sp</dimen>
+    <dimen name="card_padding">2dp</dimen>
 </resources>

@@ -39,7 +39,7 @@ class MainFragmentAdapter(private val itemClickListener: MainFragment.OnItemView
 
     inner class MainViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(details: MovieDetails) = with(binding) {
-            itemTitleTw.text = details.movie.title
+            itemTitleTw.text = details.movie!!.title
             itemPosterImg.showPoster(details.posterPath, 500)
             itemRatingHeaderTw.setText(R.string.rating_space)
             itemRatingTw.text = details.voteAverage.toString()

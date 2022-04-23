@@ -11,6 +11,7 @@ import com.example.mysimplemovie.*
 import com.example.mysimplemovie.databinding.MainFragmentBinding
 import com.example.mysimplemovie.model.AppState
 import com.example.mysimplemovie.model.entites.MovieDetails
+import com.example.mysimplemovie.model.entites.getList1
 import com.example.mysimplemovie.ui.adapters.MainFragmentAdapter
 import com.example.mysimplemovie.ui.details.DetailsFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel // откуда скопировал?
@@ -52,6 +53,7 @@ class MainFragment : Fragment() {
             is AppState.Success -> {
                 progressBar.hide()
                 listNameTw.text = getString(R.string.default_list_name)
+                //     listNameTw.text = appState.description.toString()
                 mainFragmentRecyclerView.show()
                 mainFragmentRecyclerView.adapter =
                     MainFragmentAdapter(object : OnItemViewClickListener {

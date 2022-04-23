@@ -14,7 +14,7 @@ fun View.showSnackBar(
     Snackbar.make(this, text, length).setAction(actionText, action).show()
 }
 
-fun ImageView.showPoster(posterPath: String, size: Int) {
+fun ImageView.showPoster(posterPath: String?, size: Int?) {
     Picasso.get().load("https://image.tmdb.org/t/p/w${size}${posterPath}")
         .into(this)
 }

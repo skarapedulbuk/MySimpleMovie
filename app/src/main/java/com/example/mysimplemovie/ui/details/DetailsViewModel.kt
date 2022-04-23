@@ -20,5 +20,12 @@ class DetailsViewModel(private val repository: Repository) : ViewModel() {
             localLiveData.postValue(AppState.Success(listOf(MovieDetails())))
         }.start()
     }
+
+    fun getDetailByID(id: Int) {
+        localLiveData.value = AppState.Loading
+        Thread {
+            localLiveData.postValue(AppState.Success(repository.getMovieDetailsFromServerById(id)))
+        }.start()
+    }
 }
 

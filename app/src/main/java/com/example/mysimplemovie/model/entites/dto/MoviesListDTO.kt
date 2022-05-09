@@ -5,3 +5,7 @@ data class MoviesListDTO(
     val description: String,
     val items: List<MovieDTO>
 )
+
+fun getListDTO(): List<MovieDTO> {
+    return listOf(MovieDTO(), MovieDTO())
+}

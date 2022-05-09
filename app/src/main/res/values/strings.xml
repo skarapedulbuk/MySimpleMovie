@@ -6,4 +6,5 @@
     <string name="rating_space">Рейтинг </string>
     <string name="expected_error">Expected Error!</string>
     <string name="default_list_name">The idea behind this list is to collect the live action comic book movies from within the Marvel franchise.</string>
+    <string name="search">Поиск по ID</string>
 </resources>

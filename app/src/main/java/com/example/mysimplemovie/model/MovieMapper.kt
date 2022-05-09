@@ -7,13 +7,13 @@ import com.example.mysimplemovie.model.entites.dto.MovieDTO
 import com.example.mysimplemovie.model.entites.dto.MoviesListDTO
 
 object MovieMapper {
-    fun toValueObject(dto: MoviesListDTO): List<MovieDetails> {
+    fun toListOfValueObject(dto: MoviesListDTO): List<MovieDetails> {
         return dto.items.map {
             toValueObject(it)
         }
     }
 
-    fun toValueListObject(dto: MoviesListDTO): MoviesList {
+    fun toValueObject(dto: MoviesListDTO): MoviesList {
         return MoviesList(
             dto.id,
             dto.description,

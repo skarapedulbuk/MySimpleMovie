@@ -42,7 +42,7 @@ class DetailsFragment : Fragment() {
                         main.showSnackBar(
                             it.error.message.toString(),
                             getString(R.string.reload),
-                            { viewModel.getMovieDetails() })
+                            { viewModel.getMovieDetails(id) })
                     }
                     is AppState.Loading -> {
                         main.hide()
@@ -52,32 +52,19 @@ class DetailsFragment : Fragment() {
                         progressBar.hide()
                         main.show()
 
-                        with(it.movieData!![0]) {
-                            titleTw.text = movie?.title
+                        with(it.moviesList.items[0]) {
+                            titleTw.text = movie.title
                             posterImg.showPoster(posterPath, 500)
                             descriptionTw.text = overview
                             rateTw.text = voteAverage.toString()
                             dateTw.text = releaseDate
-                            idTw.text = movie?.id.toString()
+                            idTw.text = movie.id.toString()
                         }
-
-                        /*val movieData = it.movieData!![0]
-                        titleTw.text = movieData.movie?.title
-                        posterImg.showPoster(movieData.posterPath, 500)
-                        descriptionTw.text = movieData.overview
-                        rateTw.text = movieData.voteAverage.toString()
-                        dateTw.text = movieData.releaseDate
-                        idTw.text = movieData.movie?.id.toString()*/
-
-                        /*  main.showSnackBar(
-                              getString(R.string.success),
-                              getString(R.string.reload),
-                              { viewModel.getMovieDetails() })*/
                     }
                 }
             }
         }
-        viewModel.getDetailByID(id)
+        viewModel.getMovieDetails(id)
 
     }
 
@@ -89,7 +76,7 @@ class DetailsFragment : Fragment() {
                 main.showSnackBar(
                     appState.error.message.toString(),
                     getString(R.string.reload),
-                    { viewModel.getMovieDetails() })
+                    { viewModel.getMovieDetails(id) })
             }
             is AppState.Loading -> {
                 main.hide()
@@ -99,12 +86,12 @@ class DetailsFragment : Fragment() {
                 progressBar.hide()
                 main.show()
 
-                titleTw.text = arguments.movie?.title
+                titleTw.text = arguments.movie.title
                 posterImg.showPoster(arguments.posterPath, 500)
                 descriptionTw.text = arguments.overview
                 rateTw.text = arguments.voteAverage.toString()
                 dateTw.text = arguments.releaseDate
-                idTw.text = arguments.movie?.id.toString()
+                idTw.text = arguments.movie.id.toString()
 
                 /*  main.showSnackBar(
                       getString(R.string.success),

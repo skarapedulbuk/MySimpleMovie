@@ -4,6 +4,7 @@ import com.example.mysimplemovie.model.MovieLoader
 import com.example.mysimplemovie.model.MovieMapper
 import com.example.mysimplemovie.model.entites.Movie
 import com.example.mysimplemovie.model.entites.MovieDetails
+import com.example.mysimplemovie.model.entites.MoviesList
 import com.example.mysimplemovie.model.entites.dto.MoviesListDTO
 import com.example.mysimplemovie.model.entites.getList1
 
@@ -23,13 +24,15 @@ class RepositoryImpl : Repository {
         )
     }
 
-    override fun getMoviesListFromServerById(id: Int): List<MovieDetails>? {
+    /*override fun getMoviesListFromServerById(id: Int): List<MovieDetails>? {
         val list = MovieLoader.loadMoviesList(id) ?: MoviesListDTO()
       //  val resultat = list?.let { MovieMapper.toValueObject(it) }
         return MovieMapper.toValueObject(list)
+    }*/
 
-
+    override fun getMoviesListFromServerLikeObject(id: Int): MoviesList {
+        val list = MovieLoader.loadMoviesList(id) ?: MoviesListDTO()
+        return MovieMapper.toValueObject(list)
     }
-
 
 }

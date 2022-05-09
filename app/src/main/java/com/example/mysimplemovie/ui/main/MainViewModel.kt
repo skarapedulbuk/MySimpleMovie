@@ -29,8 +29,8 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
 
     private fun getMoviesListFromServer(id: Int) {
         localLiveData.value = AppState.Loading
-        val list = repository.getMoviesListFromServerById(id) ?: getList1()
         Thread {
+            val list = repository.getMoviesListFromServerById(id) ?: getList1()
             localLiveData.postValue(AppState.Success(list))
         }.start()
     }

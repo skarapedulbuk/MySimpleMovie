@@ -66,28 +66,6 @@ object MovieLoader {
         }
     }
 
-    fun loadFuckingList(id: Int): MoviesListDTO?{
-        val uri =
-            URL("https://api.themoviedb.org/3/list/${id}?api_key=90a4d074c336b45d990d0e40bef32823&language=ru")
-
-        lateinit var urlConnection: HttpsURLConnection
-        return try {
-            urlConnection = uri.openConnection() as HttpsURLConnection
-            urlConnection.requestMethod = "GET"
-            urlConnection.readTimeout = 10000
-
-            val bufferedReader = BufferedReader(InputStreamReader(urlConnection.inputStream))
-
-            val lines = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-                getLinesForOld(bufferedReader)
-            } else {
-                getLines(bufferedReader)
-            }
-            Gson().fromJson(lines, MoviesListDTO::class.java)
-        } finally {
-            urlConnection.disconnect()
-        }
-    }
     private fun getLinesForOld(reader: BufferedReader): String {
         val rawData = StringBuilder(1024)
         var tempVariable: String?

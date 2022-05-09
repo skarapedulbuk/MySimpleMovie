@@ -4,6 +4,8 @@ import android.view.View
 import android.widget.ImageView
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
+val apiKey = "90a4d074c336b45d990d0e40bef32823"
+val apiLanguage = "ru"
 
 fun View.showSnackBar(
     text: String,

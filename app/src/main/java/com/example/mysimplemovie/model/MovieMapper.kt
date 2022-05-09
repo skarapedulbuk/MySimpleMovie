@@ -16,9 +16,7 @@ object MovieMapper {
         )
     }
 
-    fun toValueObject(dto: List<MovieDTO>): List<MovieDetails> {
-        return dto.map { toValueObject(it) }
-    }
+    fun toValueObject(dto: List<MovieDTO>): List<MovieDetails> = dto.map { toValueObject(it) }
 
     private fun toValueObject(dto: MovieDTO): MovieDetails {
         return MovieDetails(

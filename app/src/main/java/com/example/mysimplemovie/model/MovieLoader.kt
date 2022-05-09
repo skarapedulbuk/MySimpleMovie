@@ -2,6 +2,7 @@ package com.example.mysimplemovie.model
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import com.example.mysimplemovie.*
 import com.example.mysimplemovie.model.entites.dto.MovieDTO
 import com.example.mysimplemovie.model.entites.dto.MoviesListDTO
 import com.google.gson.Gson
@@ -17,13 +18,12 @@ object MovieLoader {
 
     fun loadMoviesList(id: Int): MoviesListDTO? {
         val uri =
-            URL("https://api.themoviedb.org/3/list/${id}?api_key=90a4d074c336b45d990d0e40bef32823&language=ru")
+            URL("https://api.themoviedb.org/3/list/${id}?api_key=${apiKey}&language=${apiLanguage}")
 
         lateinit var urlConnection: HttpsURLConnection
         return try {
             urlConnection = uri.openConnection() as HttpsURLConnection
             urlConnection.requestMethod = "GET"
-
             urlConnection.readTimeout = 10000
             val bufferedReader = BufferedReader(InputStreamReader(urlConnection.inputStream))
 
@@ -41,9 +41,9 @@ object MovieLoader {
         }
     }
 
-    fun loadMovieById(id: Int?): MovieDTO? {
+    fun loadMovieById(id: Int): MovieDTO? {
         val uri =
-            URL("https://api.themoviedb.org/3/movie/${id}?api_key=90a4d074c336b45d990d0e40bef32823&language=ru")
+            URL("https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=${apiLanguage}")
 
         lateinit var urlConnection: HttpsURLConnection
         return try {

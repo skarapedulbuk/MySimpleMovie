@@ -10,7 +10,7 @@ import com.example.mysimplemovie.model.entites.dto.MoviesListDTO
 import com.example.mysimplemovie.model.entites.getList1
 
 class RepositoryImpl : Repository {
-    override fun getMoviesListFromLocalStorage() = getList1()
+//    override fun getMoviesListFromLocalStorage() = getList1()
 
     override fun getMovieDetailsFromServerById(id: Int): MovieDetails {
         val dto = MovieLoader.loadMovieById(id) ?: MovieDTO(0, "Data loading error, check your VPN")
@@ -21,12 +21,10 @@ class RepositoryImpl : Repository {
             releaseDate = dto.releaseDate,
             posterPath = dto.posterPath,
         )
-
     }
 
     override fun getMoviesListFromServerLikeObject(id: Int): MoviesList {
-        val list =
-            MovieLoader.loadMoviesList(id) ?: MoviesListDTO(0, "Data loading error, check your VPN")
+        val list = MovieLoader.loadMoviesList(id) ?: MoviesListDTO(0, "Data loading error, check your VPN")
         return MovieMapper.toValueObject(list)
     }
 }

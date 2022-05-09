@@ -2,10 +2,11 @@ package com.example.mysimplemovie.ui.main
 
 import android.os.Bundle
 import android.os.Parcelable
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.example.mysimplemovie.*
 import com.example.mysimplemovie.databinding.MainFragmentBinding
@@ -13,7 +14,7 @@ import com.example.mysimplemovie.model.AppState
 import com.example.mysimplemovie.model.entites.MovieDetails
 import com.example.mysimplemovie.ui.adapters.MainFragmentAdapter
 import com.example.mysimplemovie.ui.details.DetailsFragment
-import org.koin.androidx.viewmodel.ext.android.viewModel // откуда скопировал?
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainFragment : Fragment() {
     interface OnItemViewClickListener {
@@ -43,7 +44,13 @@ class MainFragment : Fragment() {
             mainFragmentRecyclerView.adapter = adapter
             val observer = Observer<AppState> { renderData(it) }
             viewModel.liveData.observe(viewLifecycleOwner, observer)
-            viewModel.getMoviesList()
+            //viewModel.getMoviesList(editQuery.text.toString().toInt())
+            editQuery.requestFocus()
+            searchButton.setOnClickListener {
+                viewModel.getMoviesList(
+                    editQuery.text.toString().toIntOrNull()
+                )
+            }
         }
     }
 
@@ -51,7 +58,7 @@ class MainFragment : Fragment() {
         when (appState) {
             is AppState.Success -> {
                 progressBar.hide()
-                listNameTw.text = getString(R.string.default_list_name)
+                listDescTw.text = appState.moviesList.description
                 mainFragmentRecyclerView.show()
                 mainFragmentRecyclerView.adapter =
                     MainFragmentAdapter(object : OnItemViewClickListener {
@@ -59,14 +66,14 @@ class MainFragment : Fragment() {
                             detailsFragmentShow(details)
                         }
                     }).apply {
-                        setListOfMovies(appState.movieData)
+                        setListOfMovies(appState.moviesList.items)
                     }
 
-                mainContainer.showSnackBar(
-                    getString(R.string.success),
-                    getString(R.string.reload),
-                    { viewModel.getMoviesList() })
-                //               mainFragmentRecyclerView.adapter = adapter
+                Toast.makeText(
+                    context,
+                    R.string.success,
+                    Toast.LENGTH_LONG
+                ).show()
             }
 
             is AppState.Loading -> {
@@ -76,10 +83,13 @@ class MainFragment : Fragment() {
             is AppState.Error -> {
                 progressBar.hide()
                 mainFragmentRecyclerView.hide()
-                mainContainer.showSnackBar(
+                listDescTw.text = appState.error.message.toString()
+
+                Toast.makeText(
+                    context,
                     appState.error.message.toString(),
-                    getString(R.string.reload),
-                    { viewModel.getMoviesList() })
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
     }

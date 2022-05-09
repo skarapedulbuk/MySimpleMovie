@@ -7,7 +7,7 @@ import kotlinx.parcelize.Parcelize
 data class MovieDetails(
     val movie: Movie = getDefaultMovie(),
     val overview: String = "Default Overview",
-    val voteAverage: Double = 0.0,
+    val voteAverage: Number = 0.0,
     val releaseDate: String = "2000-01-01",
     val posterPath: String = "/zpH4yEqOJOReykVcSQYA1A258SQ.jpg"
 ) : Parcelable

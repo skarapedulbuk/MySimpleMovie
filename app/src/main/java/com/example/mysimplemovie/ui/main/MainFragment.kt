@@ -43,7 +43,9 @@ class MainFragment : Fragment() {
             mainFragmentRecyclerView.adapter = adapter
             val observer = Observer<AppState> { renderData(it) }
             viewModel.liveData.observe(viewLifecycleOwner, observer)
-            viewModel.getMoviesList()
+            //viewModel.getMoviesList(editQuery.text.toString().toInt())
+            editQuery.requestFocus()
+            searchButton.setOnClickListener {viewModel.getMoviesList(editQuery.text.toString().toInt())}
         }
     }
 
@@ -51,7 +53,7 @@ class MainFragment : Fragment() {
         when (appState) {
             is AppState.Success -> {
                 progressBar.hide()
-                listNameTw.text = getString(R.string.default_list_name)
+                listDescTw.text = appState.moviesList.description
                 mainFragmentRecyclerView.show()
                 mainFragmentRecyclerView.adapter =
                     MainFragmentAdapter(object : OnItemViewClickListener {
@@ -59,14 +61,13 @@ class MainFragment : Fragment() {
                             detailsFragmentShow(details)
                         }
                     }).apply {
-                        setListOfMovies(appState.movieData)
+                        setListOfMovies(appState.moviesList.items)
                     }
 
                 mainContainer.showSnackBar(
                     getString(R.string.success),
-                    getString(R.string.reload),
-                    { viewModel.getMoviesList() })
-                //               mainFragmentRecyclerView.adapter = adapter
+                    editQuery.text.toString(),
+                    {})
             }
 
             is AppState.Loading -> {
@@ -79,7 +80,7 @@ class MainFragment : Fragment() {
                 mainContainer.showSnackBar(
                     appState.error.message.toString(),
                     getString(R.string.reload),
-                    { viewModel.getMoviesList() })
+                    { viewModel.getMoviesList(editQuery.text.toString().toInt()) })
             }
         }
     }

@@ -17,7 +17,7 @@ object MovieLoader {
 
     fun loadMoviesList(id: Int): MoviesListDTO? {
         val uri =
-            URL("https://api.themoviedb.org/3/list/${id}?api_key=90a4d074c336b45d990d0e40bef32823")
+            URL("https://api.themoviedb.org/3/list/${id}?api_key=90a4d074c336b45d990d0e40bef32823&language=ru")
 
         lateinit var urlConnection: HttpsURLConnection
         return try {

@@ -16,17 +16,22 @@ class DetailsViewModel(private val repository: Repository) : ViewModel() {
 
     private fun getDetailByID(id: Int) {
         localLiveData.value = AppState.Loading
-        Thread {
-            localLiveData.postValue(
-                AppState.Success(
-                    MoviesList(
-                        0,
-                        "Fake List For One Movie Details",
-                        repository.getMovieDetailsFromServerById(id)
+        val data = repository.getMovieDetailsFromServerById(id)
+        if (data.movie.id == 0) {
+            localLiveData.postValue(AppState.Error(Throwable("Data loading error, check your VPN !!!")))
+        } else {
+            Thread {
+                localLiveData.postValue(
+                    AppState.Success(
+                        MoviesList(
+                            0,
+                            "Fake List For One Movie Details",
+                            listOf(data)
+                        )
                     )
                 )
-            )
-        }.start()
+            }.start()
+        }
     }
 }
 

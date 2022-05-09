@@ -1,9 +1,9 @@
 package com.example.mysimplemovie.model.entites.dto
 
 data class MoviesListDTO(
-    val id: Int,
-    val description: String,
-    val items: List<MovieDTO>
+    val id: Int = 0,
+    val description: String = "Default Desc of List",
+    val items: List<MovieDTO> = getListDTO()
 )
 
 fun getListDTO(): List<MovieDTO> {

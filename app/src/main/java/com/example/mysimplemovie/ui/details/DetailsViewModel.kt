@@ -16,11 +16,11 @@ class DetailsViewModel(private val repository: Repository) : ViewModel() {
 
     private fun getDetailByID(id: Int) {
         localLiveData.value = AppState.Loading
-        val data = repository.getMovieDetailsFromServerById(id)
-        if (data.movie.id == 0) {
-            localLiveData.postValue(AppState.Error(Throwable("Data loading error, check your VPN !!!")))
-        } else {
-            Thread {
+        Thread {
+            val data = repository.getMovieDetailsFromServerById(id)
+            if (data.movie.id == 0) {
+                localLiveData.postValue(AppState.Error(Throwable("Data loading error, check your VPN !!!")))
+            } else {
                 localLiveData.postValue(
                     AppState.Success(
                         MoviesList(
@@ -30,8 +30,8 @@ class DetailsViewModel(private val repository: Repository) : ViewModel() {
                         )
                     )
                 )
-            }.start()
-        }
+            }
+        }.start()
     }
 }
 
